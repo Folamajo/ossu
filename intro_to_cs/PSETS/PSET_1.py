@@ -1,0 +1,2 @@
+# PART A: Your goal is to find the number of months it takes to save up for a down payment. The cost of your down payment is calculated by multiplying the
+# total cost of your dream house by the down payment percentage.
