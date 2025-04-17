@@ -5,31 +5,36 @@
 # 4. Prints out the log (base 2) of “x”.
 import math
 
-def get_valid_number(prompt):
-   while True:
-      try:
-         valid_number= int(input(prompt))
-         if type(valid_number) == int and valid_number > 0:
-            break
-      except:
-         print("Please enter a valid number input")
+def main(): 
+   def get_valid_number(prompt, must_be_positive = False ):
+      while True:
+         try:
+            
+            valid_number= int(input(prompt))
+            if must_be_positive and valid_number <= 0:
+               print("Please enter a real number >= 1")
+            else:
+               break
+         except:
+            print("Please enter a valid number input")
 
-   return valid_number
-# while True:
-#    x = int(input('Enter a number "x":'))
-#    if type(x) == int:
-      # break 
-      # y = int(input('Enter a number "y":'))
+      return valid_number
 
-print(get_valid_number('Enter a number:'))
+   def get_power_of(num1, num2):
+      return num1 ** num2
 
-# try:
-#    while True:
-#    x = int(input('Enter a number "x":'))
-#    y = int(input('Enter a number "y":'))
-# except: 
-#    print("Please input a number")
-# print(x)
-# print(x ** y)
-# print(math.log2(x))
+   def get_log_of(num):
+      return math.log2(num)
+  
+   x = get_valid_number(f"Enter a number for x: ")
+   y = get_valid_number('Enter a number y:', True)
+
+   power = (get_power_of(x,y))
+   log = (get_log_of(y))
+   print(f'{x} raised to the power of {y}: {power}')
+   print(f"Log (base 2) of {y}: {log}")
+         
+if __name__ == '__main__':
+   main()
+
 
