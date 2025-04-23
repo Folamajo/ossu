@@ -22,6 +22,39 @@ def calculate_months_to_save(yearly_salary, portion_saved, home_cost):
    return months
 
 
+
+def caluclate_months_with_raise(yearly_salary, portion_saved, home_cost, semi_annual_raise):
+   monthly_return_rate = 0.05/12
+   months = 0
+   deposit = float(home_cost * 0.25)
+   savings_per_month = round(float((yearly_salary * portion_saved) / 12),2)
+
+   amount_saved = 0
+   
+   
+   while amount_saved < deposit:
+      if months > 0 and months % 6 == 0:
+         savings_per_month += savings_per_month * semi_annual_raise
+
+
+      monthly_interest = (amount_saved * monthly_return_rate)
+      amount_saved += savings_per_month
+      amount_saved += monthly_interest
+      months += 1
+      
+
+   return months
+
+
+#ACCOMPLISHED
+   #-Wrote Pure functions
+   #Separation of concerns
+   
+
+# print(saving_with_raise(110000, 0.15, 750000, 0.03))
+
+
+
 # def saving_for_house():
 
 #    yearly_salary = float(input('Enter your yearly salary: ' ))
