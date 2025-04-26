@@ -28,7 +28,6 @@ def caluclate_months_with_raise(yearly_salary, portion_saved, home_cost, semi_an
    months = 0
    deposit = float(home_cost * 0.25)
    savings_per_month = round(float((yearly_salary * portion_saved) / 12),2)
-
    amount_saved = 0
    
    
@@ -36,19 +35,14 @@ def caluclate_months_with_raise(yearly_salary, portion_saved, home_cost, semi_an
       if months > 0 and months % 6 == 0:
          savings_per_month += savings_per_month * semi_annual_raise
 
-
       monthly_interest = (amount_saved * monthly_return_rate)
       amount_saved += savings_per_month
       amount_saved += monthly_interest
       months += 1
       
-
    return months
 
 
-#ACCOMPLISHED
-   #-Wrote Pure functions
-   #Separation of concerns
    
 
 # print(saving_with_raise(110000, 0.15, 750000, 0.03))

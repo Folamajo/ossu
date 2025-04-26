@@ -15,21 +15,55 @@
    # Good guess or bad guess
    # wrong vowels take off 2 points 
 
+
+# Todo :-
+# Validate the guess
+
 import string
-def get_available_letters():
+def get_available_letters(letter=None):
    available_letters = string.ascii_lowercase
-   return available_letters
+   
+   if letter is None:
+      return available_letters
+   elif letter:
+      available_letters = available_letters.replace(letter, "")
+      return available_letters
 
 def hangman(secret_word, with_help):
    print('Welcome to Hangman!')
    print(f"I am thinking of a word that is {len(secret_word)} letters long.")
    print('--------------------')
 
-   guesses = 10 
-   while guesses > 0:
-      print(f'You currently have {guesses} left')
-      print(f'Available letters: {get_available_letters}')
-      guess = input("Please guess a letter: ")
+   num_of_guesses_left = 10 
+   
+   # while num_of_guesses_left > 0:
+   revealed_word = ""
+   while True:
+      print(f'You have {num_of_guesses_left} guesses left')
+      print(f'Available letters: {get_available_letters()}')
+      guess = input("Please guess a letter: ") #Validate the guess 
+      get_available_letters(guess)
+      
+      
+      if guess in secret_word:
+         for letter in secret_word:
+            if guess == letter:
+               revealed_word += guess
+            else:
+               revealed_word += "*"
+      
+      print(f"Good guess : {revealed_word}")
+      print('--------------------')
+      # if guess == "1":
+      #    break
+
+      # if guess in secret_word:
+      #    print(f"Good guess: " )
+      #    for letter in secret_word:
+
+
+   
+
 
 if __name__ == '__main__':
    secret_word = "tact"
