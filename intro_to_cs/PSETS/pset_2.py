@@ -18,16 +18,25 @@
 
 # Todo :-
 # Validate the guess
-
 import string
+import random
+
+list_of_words = ['apple', 'banana', 'tree']
+random_word = random.choice(list_of_words)
+print(random_word)
+
+
+
+
+
 def get_available_letters(letter=None):
    available_letters = string.ascii_lowercase
    
    if letter is None:
-      return available_letters
+       available_letters
    elif letter:
       available_letters = available_letters.replace(letter, "")
-      return available_letters
+
 
 def hangman(secret_word, with_help):
    print('Welcome to Hangman!')
@@ -38,29 +47,22 @@ def hangman(secret_word, with_help):
    
    # while num_of_guesses_left > 0:
    revealed_word = ""
+   # available_letters = string.ascii_lowercase
+
    while True:
-      print(f'You have {num_of_guesses_left} guesses left')
-      print(f'Available letters: {get_available_letters()}')
+      # print(f'You have {num_of_guesses_left} guesses left.')
+      # print(f'Available letters: {get_available_letters()}')
+      # guess = input("Please guess a letter: ") #Validate the guess 
+      # get_available_letters(guess)
+      
+      print(f'You have {num_of_guesses_left} guesses left.')
+      print(f'Available letters {get_available_letters()}')
       guess = input("Please guess a letter: ") #Validate the guess 
+      
+      # available_letters = available_letters.replace('guess', '')
       get_available_letters(guess)
-      
-      
-      if guess in secret_word:
-         for letter in secret_word:
-            if guess == letter:
-               revealed_word += guess
-            else:
-               revealed_word += "*"
-      
-      print(f"Good guess : {revealed_word}")
-      print('--------------------')
-      # if guess == "1":
-      #    break
-
-      # if guess in secret_word:
-      #    print(f"Good guess: " )
-      #    for letter in secret_word:
-
+      if guess == "1":
+         break
 
    
 
@@ -69,4 +71,17 @@ if __name__ == '__main__':
    secret_word = "tact"
    with_help = False
    hangman(secret_word, with_help)
-   print(get_available_letters())
+   # print(get_available_letters())
+   
+   
+   
+   
+   # if guess in secret_word:
+      #    for letter in secret_word:
+      #       if guess == letter:
+      #          revealed_word += guess
+      #       else:
+      #          revealed_word += "*"
+      
+      # print(f"Good guess : {revealed_word}")
+      # print('--------------------')
