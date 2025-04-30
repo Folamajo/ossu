@@ -38,6 +38,13 @@ def get_available_letters(letter=None):
       available_letters = available_letters.replace(letter, "")
 
 
+def has_player_won(secret_word, letters_guessed):
+   set_secret_word = set(secret_word)
+   set_letters_guessed = set(letters_guessed)
+   return set_secret_word.issubset(set_letters_guessed)
+
+
+
 def hangman(secret_word, with_help):
    print('Welcome to Hangman!')
    print(f"I am thinking of a word that is {len(secret_word)} letters long.")
