@@ -39,9 +39,21 @@ def get_available_letters(letter=None):
 
 
 def has_player_won(secret_word, letters_guessed):
-   set_secret_word = set(secret_word)
-   set_letters_guessed = set(letters_guessed)
-   return set_secret_word.issubset(set_letters_guessed)
+   if (
+      type(secret_word) != str or 
+      isinstance(letters_guessed, list) == False or 
+      not secret_word.isalpha() or
+      any(not x.isalpha() or not x.islower()  for x in letters_guessed)
+   ):
+         raise TypeError("Incorrect input ")
+   
+   else:
+      for letter in secret_word:
+         if letter in letters_guessed:
+            continue
+         else: 
+            return False
+      return True 
 
 
 
