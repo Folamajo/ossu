@@ -25,17 +25,42 @@ list_of_words = ['apple', 'banana', 'tree']
 random_word = random.choice(list_of_words)
 print(random_word)
 
-
-
-
-
-def get_available_letters(letter=None):
-   available_letters = string.ascii_lowercase
+def get_available_letters(letters_guessed = None):
+   available_letters = list(string.ascii_lowercase)
+   if letters_guessed : 
+      if not isinstance(letters_guessed, list) or any(not x.isalpha() or not x.islower() for x in letters_guessed):
+         raise TypeError("Incorrect input")
+      else:
+         for letter in letters_guessed:
+            if letter in available_letters:
+               available_letters.remove(letter)
    
-   if letter is None:
-       available_letters
-   elif letter:
-      available_letters = available_letters.replace(letter, "")
+   return ''.join(available_letters)
+
+
+def get_word_progress(secret_word, letters_guessed):
+   word_progress = []
+   if type(secret_word) != str or isinstance(letters_guessed, list) == False or not secret_word.isalpha() or any(not x.isalpha() or not x.islower()  for x in letters_guessed):
+         raise TypeError("Incorrect input ")
+    
+   else:
+      for letter in secret_word:
+         if letter in letters_guessed:
+            word_progress.append(letter)
+         else:
+            word_progress.append('*')
+   
+   return ''.join(word_progress)
+    
+
+
+# def get_available_letters(letter=None):
+#    available_letters = string.ascii_lowercase
+   
+#    if letter is None:
+#        available_letters
+#    elif letter:
+#       available_letters = available_letters.replace(letter, "")
 
 
 def has_player_won(secret_word, letters_guessed):
