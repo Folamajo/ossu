@@ -51,16 +51,6 @@ def get_word_progress(secret_word, letters_guessed):
             word_progress.append('*')
    
    return ''.join(word_progress)
-    
-
-
-# def get_available_letters(letter=None):
-#    available_letters = string.ascii_lowercase
-   
-#    if letter is None:
-#        available_letters
-#    elif letter:
-#       available_letters = available_letters.replace(letter, "")
 
 
 def has_player_won(secret_word, letters_guessed):
@@ -79,34 +69,49 @@ def has_player_won(secret_word, letters_guessed):
          else: 
             return False
       return True 
+   
+def choose_help_letter(secret_word, available_letters):
+   if (not type(secret_word) == str or 
+      not secret_word.isalpha() or 
+      not type(available_letters) == str or 
+      not available_letters.isalpha()):
+         raise TypeError("One of the parameters is incorrect")
+
+   else:
+      set_secret_word = set(secret_word)
+      choose_from = []
+      for letter in set_secret_word:
+         if letter in available_letters:
+            choose_from.append(letter)
+      
+      revealed_letter = random.choice(choose_from)
+   return revealed_letter
+   
+   #create a string that has Unique letters that are in both the secret word and the avaiable letters 
+   #apple
+   
+   #It should accept two parameters secret_word and letter_guessed
+   #It should return revealed word
+   #Validate parameters
 
 
 
 def hangman(secret_word, with_help):
-   print('Welcome to Hangman!')
-   print(f"I am thinking of a word that is {len(secret_word)} letters long.")
-   print('--------------------')
-
-   num_of_guesses_left = 10 
-   
-   # while num_of_guesses_left > 0:
-   revealed_word = ""
-   # available_letters = string.ascii_lowercase
-
-   while True:
-      # print(f'You have {num_of_guesses_left} guesses left.')
-      # print(f'Available letters: {get_available_letters()}')
-      # guess = input("Please guess a letter: ") #Validate the guess 
-      # get_available_letters(guess)
-      
-      print(f'You have {num_of_guesses_left} guesses left.')
-      print(f'Available letters {get_available_letters()}')
-      guess = input("Please guess a letter: ") #Validate the guess 
-      
-      # available_letters = available_letters.replace('guess', '')
-      get_available_letters(guess)
-      if guess == "1":
-         break
+   # WHILE guesses remain AND player hasn’t won:
+   #  - Show visual separator (---)
+   #  - Show guesses left
+   #  - Show available letters
+   #  - Ask for input
+   #  - Validate input:
+   #      - Already guessed? → Warn
+   #      - Not a letter? → Warn
+   #      - Valid + in word? → Add, confirm
+   #      - Valid + NOT in word? → Penalize
+   #      - Vowel miss? → -2 guesses
+   #      - Consonant miss? → -1 guess
+   #      - Input is "!" AND help allowed? → Call helper function, -3 guesses
+   #  - Show word progress
+   # 
 
    
 
@@ -129,3 +134,30 @@ if __name__ == '__main__':
       
       # print(f"Good guess : {revealed_word}")
       # print('--------------------')
+      # 
+      # 
+      # 
+      # print('Welcome to Hangman!')
+   # print(f"I am thinking of a word that is {len(secret_word)} letters long.")
+   # print('--------------------')
+
+   # num_of_guesses_left = 10 
+   
+   # # while num_of_guesses_left > 0:
+   # revealed_word = ""
+   # # available_letters = string.ascii_lowercase
+
+   # while True:
+   #    # print(f'You have {num_of_guesses_left} guesses left.')
+   #    # print(f'Available letters: {get_available_letters()}')
+   #    # guess = input("Please guess a letter: ") #Validate the guess 
+   #    # get_available_letters(guess)
+      
+   #    print(f'You have {num_of_guesses_left} guesses left.')
+   #    print(f'Available letters {get_available_letters()}')
+   #    guess = input("Please guess a letter: ") #Validate the guess 
+      
+   #    # available_letters = available_letters.replace('guess', '')
+   #    get_available_letters(guess)
+   #    if guess == "1":
+   #       break
