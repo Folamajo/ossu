@@ -21,9 +21,9 @@
 import string
 import random
 
-list_of_words = ['apple', 'banana', 'tree']
-random_word = random.choice(list_of_words)
-print(random_word)
+# list_of_words = ['apple', 'banana', 'tree']
+# random_word = random.choice(list_of_words)
+# print(random_word)
 
 def get_available_letters(letters_guessed = None):
    available_letters = list(string.ascii_lowercase)
@@ -42,7 +42,7 @@ def get_word_progress(secret_word, letters_guessed):
    word_progress = []
    if type(secret_word) != str or isinstance(letters_guessed, list) == False or not secret_word.isalpha() or any(not x.isalpha() or not x.islower()  for x in letters_guessed):
          raise TypeError("Incorrect input ")
-    
+   
    else:
       for letter in secret_word:
          if letter in letters_guessed:
@@ -97,6 +97,17 @@ def choose_help_letter(secret_word, available_letters):
 
 
 def hangman(secret_word, with_help):
+
+   guesses = 10
+   letters_guessed = []
+
+   #INTRO
+   print("Welcome to Hangman!")
+   print(f"I am thinking of a word that is {len(secret_word)} letters long.")
+
+   #GAME LOOP
+   while guesses > 0 and not has_player_won(secret_word, letters_guessed):
+      print
    # WHILE guesses remain AND player hasn’t won:
    #  - Show visual separator (---)
    #  - Show guesses left
