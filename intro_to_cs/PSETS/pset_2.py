@@ -25,7 +25,7 @@ import random
 # random_word = random.choice(list_of_words)
 # print(random_word)
 
-def get_available_letters(letters_guessed = None):
+def get_available_letters(letters_guessed):
    available_letters = list(string.ascii_lowercase)
    if letters_guessed : 
       if not isinstance(letters_guessed, list) or any(not x.isalpha() or not x.islower() for x in letters_guessed):
@@ -107,7 +107,33 @@ def hangman(secret_word, with_help):
 
    #GAME LOOP
    while guesses > 0 and not has_player_won(secret_word, letters_guessed):
-      print
+      print("--------------------")
+      if guesses > 1: 
+         print(f"You have {guesses} guesses left.")
+      else:
+         print(f"You have {guesses} guess left.")
+      
+      print(f"Available letters: {get_available_letters(letters_guessed )}")
+      user_input = input("Please guess a letter: ")
+   
+      #Validate users input
+      if not user_input.isalpha() or len(user_input) > 1:
+         print(f"Oops! that is not a valid letter. please input a single letter from the alphabet: {get_word_progress(secret_word, letters_guessed)}")
+  
+      elif user_input.isalpha():
+         print("hi")
+
+         
+      
+
+
+
+
+
+
+      # print(user_input)
+
+
    # WHILE guesses remain AND player hasn’t won:
    #  - Show visual separator (---)
    #  - Show guesses left
