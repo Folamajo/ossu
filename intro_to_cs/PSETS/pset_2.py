@@ -100,13 +100,16 @@ def hangman(secret_word, with_help):
 
    guesses = 10
    letters_guessed = []
+   vowels = ["a", "e", "i", "o", "u"]
+   score = 0
 
    #INTRO
    print("Welcome to Hangman!")
    print(f"I am thinking of a word that is {len(secret_word)} letters long.")
 
    #GAME LOOP
-   while guesses > 0 and not has_player_won(secret_word, letters_guessed):
+   # while guesses > 0 and not has_player_won(secret_word, letters_guessed):
+   while True:
       print("--------------------")
       if guesses > 1: 
          print(f"You have {guesses} guesses left.")
@@ -114,18 +117,46 @@ def hangman(secret_word, with_help):
          print(f"You have {guesses} guess left.")
       
       print(f"Available letters: {get_available_letters(letters_guessed )}")
-      user_input = input("Please guess a letter: ")
+      user_input = input("Please guess a letter: ").strip()
    
       #Validate users input
       if not user_input.isalpha() or len(user_input) > 1:
-         print(f"Oops! that is not a valid letter. please input a single letter from the alphabet: {get_word_progress(secret_word, letters_guessed)}")
+         print(f"Oops! that is not a valid letter. Please input a single letter from the alphabet: {get_word_progress(secret_word, letters_guessed)}")
   
-      elif user_input.isalpha():
-         print("hi")
+      else:
+         if user_input and not with_help:
 
-         
-      
+            if user_input in secret_word:
+               if user_input not in letters_guessed:
+                  letters_guessed.append(user_input)
+                  print(f"Good guess: {get_word_progress(secret_word, letters_guessed)}")
+               else: 
+                  print(f"Oops! You've already guessed that letter: {get_word_progress(secret_word, letters_guessed)}")
+            else:
+               if user_input not in letters_guessed:
+                  letters_guessed.append(user_input)
+                  print(f"Oops! That letter is not in my word: {get_word_progress(secret_word, letters_guessed)}")
+                  if user_input in vowels:
+                     guesses -= 2
+                  else:
+                     guesses -= 1
+               else: 
+                  print(f"Oops! You've already guessed that letter: {get_word_progress(secret_word, letters_guessed)}")
+            
+      if has_player_won(secret_word, letters_guessed):
+         print("--------------------")
+         print("Congratulations, you won!")
+         score += guesses + 4
+         score *= len(set(secret_word))
+         score += len(secret_word)
+         print(f"Your total score for this game is: {score}")
+         return
 
+      elif guesses <= 0:
+         print("--------------------")
+         print(f"Sorry, you ran out of guesses. The word was {secret_word}.")
+         return
+   
 
 
 
