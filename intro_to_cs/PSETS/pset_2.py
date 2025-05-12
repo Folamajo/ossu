@@ -64,14 +64,6 @@ def choose_help_letter(secret_word, available_letters):
       
       revealed_letter = random.choice(choose_from)
    return revealed_letter
-   
-   #create a string that has Unique letters that are in both the secret word and the avaiable letters 
-   #apple
-   
-   #It should accept two parameters secret_word and letter_guessed
-   #It should return revealed word
-   #Validate parameters
-
 
 
 def hangman(secret_word, with_help):
@@ -100,6 +92,7 @@ def hangman(secret_word, with_help):
       print(f"Available letters: {get_available_letters(letters_guessed )}")
       user_input = input("Please guess a letter: ").strip()
       match = re.search('[a-z!]', user_input)
+      
       #Validate users input
       if not match or len(user_input) > 1:
          print(f"Oops! that is not a valid letter. Please input a single letter from the alphabet: {get_word_progress(secret_word, letters_guessed)}")
@@ -136,11 +129,12 @@ def hangman(secret_word, with_help):
                   print(f"Oops! You've already guessed that letter: {get_word_progress(secret_word, letters_guessed)}")
             else:
                if user_input == "!" and guesses >= 3:
-                  print(choose_help_letter(secret_word, letters_guessed))
-                  print(get_word_progress)
+                  revealed_letter = choose_help_letter(secret_word, get_available_letters(letters_guessed))
+                  print(f"Letter revealed: {revealed_letter}")
+                  letters_guessed.append(revealed_letter)
+                  print(get_word_progress(secret_word, letters_guessed))
+                  guesses -= 3
                   
-                  # print("Sorry! I can't help you. You are playing without help mode.")
-                  # continue
                
                if not user_input == "!" and user_input not in letters_guessed:
                   letters_guessed.append(user_input)
@@ -149,7 +143,7 @@ def hangman(secret_word, with_help):
                      guesses -= 2
                   else:
                      guesses -= 1
-               else: 
+               elif not user_input == "!" and user_input in letters_guessed: 
                   print(f"Oops! You've already guessed that letter: {get_word_progress(secret_word, letters_guessed)}")
             
             
@@ -172,7 +166,7 @@ def hangman(secret_word, with_help):
 
 
 if __name__ == '__main__':
-   secret_word = "tact"
+   secret_word = "arsenal"
    with_help = True
    hangman(secret_word, with_help)
    
