@@ -134,6 +134,8 @@ def hangman(secret_word, with_help):
                   letters_guessed.append(revealed_letter)
                   print(get_word_progress(secret_word, letters_guessed))
                   guesses -= 3
+               elif user_input == "!" and guesses < 3:
+                  print("You can only get help when you have more than 3 guesses left")
                   
                
                if not user_input == "!" and user_input not in letters_guessed:
@@ -160,10 +162,6 @@ def hangman(secret_word, with_help):
          print("--------------------")
          print(f"Sorry, you ran out of guesses. The word was {secret_word}.")
          return
-
-
-   
-
 
 if __name__ == '__main__':
    secret_word = "arsenal"
