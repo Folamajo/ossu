@@ -2,6 +2,8 @@
 import string
 import random
 import re
+from utils.hangman_word_list import words
+
 
 def get_available_letters(letters_guessed):
    available_letters = list(string.ascii_lowercase)
@@ -19,7 +21,7 @@ def get_available_letters(letters_guessed):
 def get_word_progress(secret_word, letters_guessed):
    word_progress = []
    if type(secret_word) != str or isinstance(letters_guessed, list) == False or not secret_word.isalpha() or any(not x.isalpha() or not x.islower()  for x in letters_guessed):
-         raise TypeError("Incorrect input ")
+         raise TypeError("Incorrect input")
    
    else:
       for letter in secret_word:
@@ -66,22 +68,19 @@ def choose_help_letter(secret_word, available_letters):
    return revealed_letter
 
 
-def hangman(secret_word, with_help):
+def hangman(with_help):
 
    guesses = 10
    letters_guessed = []
    vowels = ["a", "e", "i", "o", "u"]
    score = 0
-   
-
-
+   secret_word  = random.choice(words)
 
    #INTRO
    print("Welcome to Hangman!")
    print(f"I am thinking of a word that is {len(secret_word)} letters long.")
 
    #GAME LOOP
-   # while guesses > 0 and not has_player_won(secret_word, letters_guessed):
    while True:
       print("--------------------")
       if guesses > 1: 
@@ -164,9 +163,8 @@ def hangman(secret_word, with_help):
          return
 
 if __name__ == '__main__':
-   secret_word = "arsenal"
    with_help = True
-   hangman(secret_word, with_help)
+   hangman(with_help)
    
    
    
