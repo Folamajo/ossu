@@ -7,3 +7,11 @@
 # 6. Code the solution
 # 7. Refactor for clarity, modularity, and SOLID
 
+def text_to_list(input):
+   if not isinstance(input, str):
+      raise TypeError("Incorrect input")
+   else:
+      if len(input) < 1:
+         return []
+      else:
+         return input.split()
