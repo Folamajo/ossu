@@ -15,3 +15,23 @@ def text_to_list(input):
          return []
       else:
          return input.split()
+      
+
+def get_frequencies(input):
+   
+
+   if any(not isinstance(value, str) for value in input):
+      raise TypeError("One of the values is not a string")
+
+   else:
+      result = {}
+      if len(input) < 1:
+         return result
+      else:
+         for value in input:
+            if value in result:
+               result[value] += 1
+            else:
+               result[value] = 1
+   #Check if input is empty 
+   #else create dict if the for loop check value in input if it is already in dict += 1 else = 1
