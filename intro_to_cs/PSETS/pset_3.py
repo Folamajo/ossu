@@ -7,31 +7,42 @@
 # 6. Code the solution
 # 7. Refactor for clarity, modularity, and SOLID
 
-def text_to_list(input):
-   if not isinstance(input, str):
+def text_to_list(word_list):
+   if not isinstance(word_list, str):
       raise TypeError("Incorrect input")
    else:
-      if len(input) < 1:
+      if len(word_list) < 1:
          return []
       else:
-         return input.split()
+         return word_list.split()
       
 
-def get_frequencies(input):
+def get_frequencies(word_list):
    
-
-   if any(not isinstance(value, str) for value in input):
+   if any(not isinstance(value, str) for value in word_list):
       raise TypeError("One of the values is not a string")
 
-   else:
-      result = {}
-      if len(input) < 1:
-         return result
+   result = {}
+   if len(word_list) < 1:
+      return {}
+   
+   for value in word_list:
+      if value in result:
+         result[value] += 1
       else:
-         for value in input:
-            if value in result:
-               result[value] += 1
-            else:
-               result[value] = 1
+         result[value] = 1
+   return result
+
+def get_letter_frequencies(word):
+   if (not isinstance(word, str)):
+      raise TypeError("Please input a string")
+   
+   if word == "":
+      return {}
+
+   split_word = list(word)
+   return get_frequencies(split_word)
+
+
    #Check if input is empty 
    #else create dict if the for loop check value in input if it is already in dict += 1 else = 1
