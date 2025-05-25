@@ -18,7 +18,6 @@ def text_to_list(word_list):
       
 
 def get_frequencies(word_list):
-   
    if any(not isinstance(value, str) for value in word_list):
       raise TypeError("One of the values is not a string")
 
@@ -33,6 +32,7 @@ def get_frequencies(word_list):
          result[value] = 1
    return result
 
+
 def get_letter_frequencies(word):
    if (not isinstance(word, str)):
       raise TypeError("Please input a string")
@@ -46,3 +46,24 @@ def get_letter_frequencies(word):
 
    #Check if input is empty 
    #else create dict if the for loop check value in input if it is already in dict += 1 else = 1
+
+def calculate_similarity_score(dict1, dict2 ):
+   if (not isinstance(dict1, dict) or not isinstance(dict2, dict)):
+      raise TypeError("Wrong input type. ")
+   
+   if (len(dict1) == 0 and len(dict2) == 0):
+      return 0
+   
+   U = set().union(dict1.keys(), dict2.keys())
+
+   delta_freq_scores = {}
+   sigma_freq_scores = {}
+
+   for word in U:
+      delta_difference = abs(dict1.get(word, 0) - dict2.get(word, 0))
+      sigma_difference = dict1.get(word, 0) + dict2.get(word, 0)
+      delta_freq_scores[word] = delta_difference
+
+   return U 
+
+print(calculate_similarity_score({'hello': 2, 'world' : 4}, {'hello': 2, 'fola' : 4}))
