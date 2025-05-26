@@ -1,5 +1,5 @@
 import unittest
-from intro_to_cs.psets.pset_3 import text_to_list, get_frequencies, get_letter_frequencies
+from intro_to_cs.psets.pset_3 import text_to_list, get_frequencies, get_letter_frequencies, calculate_similarity_score
 
 class TestTextToList(unittest.TestCase):
    def test_valid_input(self):
@@ -42,3 +42,16 @@ class TestGetLetterFrequencies(unittest.TestCase):
    def test_empty_string(self):
       result = {}
       self.assertEqual(get_letter_frequencies(""), result)
+
+class TestCalculateSimilarityScore(unittest.TestCase):
+   def test_valid_input(self):
+      result = 0.33
+      self.assertEqual(calculate_similarity_score({'hello': 2, 'world' : 4}, {'hello': 2, 'fola' : 4}), result)
+
+   def test_invalid_input(self):
+      with self.assertRaises(TypeError):
+         calculate_similarity_score({"hello": 1}, 2)
+
+   def test_empty_dicts(self):
+      result = 0
+      self.assertEqual(calculate_similarity_score({}, {}), result)

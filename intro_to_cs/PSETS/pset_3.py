@@ -49,21 +49,40 @@ def get_letter_frequencies(word):
 
 def calculate_similarity_score(dict1, dict2 ):
    if (not isinstance(dict1, dict) or not isinstance(dict2, dict)):
-      raise TypeError("Wrong input type. ")
+      raise TypeError("Wrong input type.")
    
    if (len(dict1) == 0 and len(dict2) == 0):
       return 0
    
    U = set().union(dict1.keys(), dict2.keys())
-
-   delta_freq_scores = {}
-   sigma_freq_scores = {}
+   delta_score = 0
+   sigma_score = 0
 
    for word in U:
       delta_difference = abs(dict1.get(word, 0) - dict2.get(word, 0))
+      delta_score += delta_difference
       sigma_difference = dict1.get(word, 0) + dict2.get(word, 0)
-      delta_freq_scores[word] = delta_difference
-
-   return U 
+      sigma_score += sigma_difference
+      
+   result = round(1 - (delta_score / sigma_score), 2)
+   return result
 
 print(calculate_similarity_score({'hello': 2, 'world' : 4}, {'hello': 2, 'fola' : 4}))
+
+
+
+
+
+
+
+
+
+
+
+
+# delta_freq_scores = {}
+   # sigma_freq_scores = {}
+# delta_freq_scores[word] = delta_difference
+      # sigma_freq_scores[word] = sigma_difference
+
+   # result = round(1 - ((sum(delta_freq_scores.values()))/ (sum(sigma_freq_scores.values()))), 2)
