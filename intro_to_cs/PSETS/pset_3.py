@@ -22,7 +22,7 @@ def get_frequencies(word_list):
       raise TypeError("One of the values is not a string")
 
    result = {}
-   if len(word_list) < 1:
+   if not word_list:
       return {}
    
    for value in word_list:
@@ -67,7 +67,48 @@ def calculate_similarity_score(dict1, dict2 ):
    result = round(1 - (delta_score / sigma_score), 2)
    return result
 
-print(calculate_similarity_score({'hello': 2, 'world' : 4}, {'hello': 2, 'fola' : 4}))
+
+def calculate_most_frequent_word(dict1, dict2):
+   if (not isinstance(dict1, dict) or not isinstance(dict2, dict)):
+      raise TypeError("Wrong input type.")
+   
+   if (len(dict1) == 0 and len(dict2) == 0):
+      return []
+   
+   merged_dict = {}
+
+   max_freq = 0
+   result = []
+
+   for key, value in dict1.items():
+      if key in merged_dict:
+         merged_dict[key] += value
+      else:
+         merged_dict[key] = value
+
+   for key, value in dict2.items():
+      if key in merged_dict:
+         merged_dict[key] += value
+      else:
+         merged_dict[key] = value
+
+
+   for key, value in merged_dict.items():
+      if value > max_freq:
+         max_freq = value
+   
+   for key, value in merged_dict.items():
+      if value == max_freq:
+         result.append(key)
+
+   return result 
+
+
+
+   #Merge the dicts
+   #order based on max value 
+   #return list
+print(calculate_most_frequent_word({'hello': 5, 'world' : 1}, {'hello': 1, 'world' : 5}))
 
 
 
