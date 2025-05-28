@@ -68,7 +68,7 @@ def calculate_similarity_score(dict1, dict2 ):
    return result
 
 
-def calculate_most_frequent_word(dict1, dict2):
+def get_most_frequent_words(dict1, dict2):
    if (not isinstance(dict1, dict) or not isinstance(dict2, dict)):
       raise TypeError("Wrong input type.")
    
@@ -101,14 +101,12 @@ def calculate_most_frequent_word(dict1, dict2):
       if value == max_freq:
          result.append(key)
 
-   return result 
+   sorted_list = sorted(result)
+   return sorted_list
 
 
 
-   #Merge the dicts
-   #order based on max value 
-   #return list
-print(calculate_most_frequent_word({'hello': 5, 'world' : 1}, {'hello': 1, 'world' : 5}))
+print(get_most_frequent_words({'hello': 5, 'world' : 1}, {'hello': 1, 'world' : 5}))
 
 
 
