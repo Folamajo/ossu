@@ -1,5 +1,5 @@
 import unittest
-from intro_to_cs.psets.pset_3 import text_to_list, get_frequencies, get_letter_frequencies, calculate_similarity_score, get_most_frequent_words
+from intro_to_cs.psets.pset_3 import text_to_list, get_frequencies, get_letter_frequencies, calculate_similarity_score, get_most_frequent_words, get_tf
 
 class TestTextToList(unittest.TestCase):
    def test_valid_input(self):
@@ -69,3 +69,16 @@ class TestGetMostFrequentWords(unittest.TestCase):
    def test_empty_dicts(self):
       result = []
       self.assertEqual(get_most_frequent_words({}, {}), result)
+
+class TestGetTermFrequency(unittest.TestCase):
+   def test_valid_input(self):
+      result = {'hello': 0.6666666666666666, 'world': 0.3333333333333333}
+      self.assertEqual(get_tf(['hello', 'world', 'hello']), result)
+
+   def test_invalid_input(self):
+      with self.assertRaises(TypeError):
+         get_tf(4)
+
+   def test_empty_list(self):
+      result = {}
+      self.assertEqual(get_tf([]), result)

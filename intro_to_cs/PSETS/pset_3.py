@@ -106,7 +106,30 @@ def get_most_frequent_words(dict1, dict2):
 
 
 
-print(get_most_frequent_words({'hello': 5, 'world' : 1}, {'hello': 1, 'world' : 5}))
+
+
+def get_tf(word_list):
+   #Validate
+   if not isinstance(word_list, list):
+      raise TypeError("Wrong input type.")
+   
+   if len(word_list) == 0:
+      return {}
+   
+   result = {}
+   
+   frequency_dict = get_frequencies(word_list)
+
+   
+   for key, value in frequency_dict.items():
+      result[key] = (value / len(word_list))
+
+   return result
+
+
+
+
+print(get_tf(['hello', 'world', 'hello']))
 
 
 
