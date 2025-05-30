@@ -6,6 +6,7 @@
 # 5. Write the test first — TDD mindset
 # 6. Code the solution
 # 7. Refactor for clarity, modularity, and SOLID
+import math
 
 def text_to_list(word_list):
    if not isinstance(word_list, str):
@@ -127,9 +128,39 @@ def get_tf(word_list):
    return result
 
 
+def get_idf(document_list):
+   if not isinstance(document_list, list):
+      raise TypeError("Incorrect input")
+   
+   if len(document_list) == 0:
+      return {}
+   
+   result = {}
+   total_num_docs = len(document_list)
+   unique_words = set([item for document in document_list for item in document])
+
+   for word in unique_words:
+      count = 0
+
+      for document in document_list:
+         if word in document:
+            count += 1
+
+      #Carry out idf calculation
+      idf_score = math.log10(total_num_docs /count)
+      result[word] = idf_score
+
+   return result
 
 
-print(get_tf(['hello', 'world', 'hello']))
+
+
+
+print(get_idf([
+    ["hello", "world", "hello"],
+    ["hello", "friend"],
+    ["goodbye", "world"]
+]))
 
 
 
