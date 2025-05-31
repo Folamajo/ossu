@@ -86,3 +86,16 @@ class TestGetTermFrequency(unittest.TestCase):
 class TestGetInverseDocumentFrequency(unittest.TestCase):
    def test_invalid_input(self):
       with self.assertRaises(TypeError):
+         get_idf(123)
+
+   #Test valid input
+   #Test empty list
+   def test_empty_list(self):
+      result = {}
+      self.assertEqual(get_idf([]), result)
+
+   def test_valid_input(self):
+      result = {'friend': 0.47712125471966244, 'goodbye': 0.47712125471966244, 'world': 0.17609125905568124, 'hello': 0.17609125905568124}
+      self.assertEqual(get_idf([["hello", "world", "hello"],
+    ["hello", "friend"],
+    ["goodbye", "world"]]), result )

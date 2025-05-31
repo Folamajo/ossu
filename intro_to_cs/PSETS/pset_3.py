@@ -153,14 +153,29 @@ def get_idf(document_list):
    return result
 
 
+def get_tfidf(word_list, document_list):
+   if not isinstance(word_list, list) or not isinstance(document_list, list):
+      raise TypeError("Incorrect input")
+
+   if len(word_list) == 0 or len(document_list) == 0:
+      return {}
+
+   result = []
+   tf_score = get_tf(word_list)
+   idf_score = get_idf(document_list)
+
+   for word in tf_score:
+      if word in idf_score:
+         tf_idf_score = tf_score[word] * idf_score[word]
+         result.append((word, tf_idf_score))
 
 
 
-print(get_idf([
-    ["hello", "world", "hello"],
+   return result
+
+print(get_tfidf(['hello', 'world', 'hello'], [["hello", "world", "hello"],
     ["hello", "friend"],
-    ["goodbye", "world"]
-]))
+    ["goodbye", "world"]]))
 
 
 
