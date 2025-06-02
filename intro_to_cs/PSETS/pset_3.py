@@ -169,13 +169,18 @@ def get_tfidf(word_list, document_list):
          tf_idf_score = tf_score[word] * idf_score[word]
          result.append((word, tf_idf_score))
 
+   #Sort by tf-idf score 
 
+   sorted_result = sorted(result, key=lambda tuple: (tuple[1], tuple[0]))
 
-   return result
+   return sorted_result
 
-print(get_tfidf(['hello', 'world', 'hello'], [["hello", "world", "hello"],
-    ["hello", "friend"],
-    ["goodbye", "world"]]))
+print(get_tfidf(['hello', 'bye', 'hello'], 
+               [
+                  ["hello", "bye", "hello"],
+                  ["hello", "friend"],
+                  ["goodbye", "bye"]
+               ]))
 
 
 

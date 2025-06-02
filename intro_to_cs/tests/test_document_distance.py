@@ -1,5 +1,5 @@
 import unittest
-from psets.pset_3 import text_to_list, get_frequencies, get_letter_frequencies, calculate_similarity_score, get_most_frequent_words, get_tf, get_idf
+from psets.pset_3 import text_to_list, get_frequencies, get_letter_frequencies, calculate_similarity_score, get_most_frequent_words, get_tf, get_idf, get_tfidf
 
 class TestTextToList(unittest.TestCase):
    def test_valid_input(self):
@@ -99,3 +99,21 @@ class TestGetInverseDocumentFrequency(unittest.TestCase):
       self.assertEqual(get_idf([["hello", "world", "hello"],
     ["hello", "friend"],
     ["goodbye", "world"]]), result )
+      
+class TestGetTextFrequencyInverseDocumentFrequency(unittest.TestCase):
+   def test_invalid_input(self):
+      with self.assertRaises(TypeError):
+         get_tfidf(123)
+
+   def test_empty_lists(self):
+      result = {}
+      self.assertEqual(get_tfidf([], ['hello', 'hi']), result)
+
+   def test_valid_input(self):
+      result = [('bye', 0.058697086351893746), ('hello', 0.11739417270378749)]
+      self.assertEqual(get_tfidf(['hello', 'bye', 'hello'], 
+               [
+                  ["hello", "bye", "hello"],
+                  ["hello", "friend"],
+                  ["goodbye", "bye"]
+               ]), result)
