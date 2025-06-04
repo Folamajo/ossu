@@ -193,9 +193,8 @@ print(get_tfidf(['hello', 'bye', 'hello'],
 
 
 
-# delta_freq_scores = {}
-   # sigma_freq_scores = {}
-# delta_freq_scores[word] = delta_difference
-      # sigma_freq_scores[word] = sigma_difference
-
-   # result = round(1 - ((sum(delta_freq_scores.values()))/ (sum(sigma_freq_scores.values()))), 2)
+# I implemented a full TF-IDF pipeline from scratch, including helper functions like get_frequencies, get_tf, and get_idf.
+# I used a TDD-style approach, writing unit tests to validate both edge cases and valid inputs for every function.
+# The project deepened my understanding of term frequency, inverse document frequency, and how they combine to rank word importance.
+# I wrote a final get_tfidf function that computes and sorts TF-IDF scores across multiple documents.
+# This problem set strengthened my skills in functional decomposition, testing, and foundational NLP logic.
