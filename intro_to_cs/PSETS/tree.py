@@ -17,4 +17,12 @@ class Node:
 
 
 tree1 = Node(1, Node(2), Node(5, Node(7), Node(8)))
-print(tree1.get_left_child().get_left_child())
+tree2 = Node(7, Node(2, Node(1), Node(5, Node(3), Node(6))), Node(9, Node(8), Node(10)))
+# print(tree1.get_right_child().get_left_child().get_value())
+
+node = tree1.get_left_child().get_left_child()
+# print(node)
+if node is not None :
+   print(node.get_value())
+else:
+   print("No node")
