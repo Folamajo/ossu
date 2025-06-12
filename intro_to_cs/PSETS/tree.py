@@ -16,12 +16,13 @@ class Node:
       return self.right_child
 
 
-tree1 = Node(1, Node(2), Node(5, Node(7), Node(8)))
+tree1 = Node(8, Node(2, Node(1), Node(6)), Node(10))
 tree2 = Node(7, Node(2, Node(1), Node(5, Node(3), Node(6))), Node(9, Node(8), Node(10)))
-# print(tree1.get_right_child().get_left_child().get_value())
+tree3 = Node(5, Node(3, Node(2), Node(4)), Node(14, Node(12), Node(21, Node(20), Node(26))))
 
-node = tree1.get_left_child().get_left_child()
-# print(node)
+node = tree3.get_left_child().get_left_child()
+
+
 if node is not None :
    print(node.get_value())
 else:
