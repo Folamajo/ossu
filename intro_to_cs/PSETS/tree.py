@@ -28,4 +28,16 @@ def check_node(input):
    else:
       return "No node"
    
-print(check_node(node))
+
+
+def find_tree_height(node):
+   if node == None:
+      return 0; 
+
+   return 1 + max(find_tree_height(node.get_left_child()), find_tree_height(node.get_right_child()))
+   
+
+   
+
+
+print(find_tree_height(tree3))

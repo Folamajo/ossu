@@ -1,7 +1,7 @@
 import unittest
-from psets.tree import Node, check_node
+from psets.tree import Node, check_node, find_tree_height
 
-class TestTreeOne(unittest.TestCase):
+class TestTree(unittest.TestCase):
    def test_valid_input(self):
       result = 1
       tree1 = Node(8, Node(2, Node(1), Node(6)), Node(10))
@@ -26,3 +26,9 @@ class TestTreeOne(unittest.TestCase):
       tree3 = Node(5, Node(3, Node(2), Node(4)), Node(14, Node(12), Node(21, Node(20), Node(26))))
       node = tree3.get_left_child().get_left_child().get_right_child()
       self.assertEqual(check_node(node), result)
+
+   def test_tree_height(self):
+      result = 2
+      tree1 = Node(8, Node(2, Node(1), Node(6)), Node(10))
+      self.assertEqual(find_tree_height(tree1), result)
+
