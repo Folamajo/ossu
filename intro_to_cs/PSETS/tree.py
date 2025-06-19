@@ -32,12 +32,24 @@ def check_node(input):
 
 def find_tree_height(node):
    if node == None:
-      return 0; 
+      return -1
 
+ 
    return 1 + max(find_tree_height(node.get_left_child()), find_tree_height(node.get_right_child()))
    
 
+def compare_func(child_value, parent_value):
+   if child_value > parent_value:
+      return "min_heap"
    
+   elif child_value < parent_value:
+      return "max_heap"
 
+def is_heap(node):
+   if node == None:
+      return 
+   
+   if compare_func(node.get_left_child()) == compare_func(node.get_right_child()):
+      return 
 
 print(find_tree_height(tree3))
