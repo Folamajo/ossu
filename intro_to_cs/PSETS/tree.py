@@ -38,18 +38,48 @@ def find_tree_height(node):
    return 1 + max(find_tree_height(node.get_left_child()), find_tree_height(node.get_right_child()))
    
 
-def compare_func(child_value, parent_value):
+# def compare_func(child_value, parent_value):
+#    if child_value > parent_value:
+#       return "min_heap"
+   
+#    elif child_value < parent_value:
+#       return "max_heap"
+
+def max_heap_comparator(child_value, parent_value):
+   if child_value < parent_value:
+      return True
+   return False
+
+def min_heap_comparator(child_value, parent_value):
    if child_value > parent_value:
-      return "min_heap"
+      return True
+   return False
+
+
+
+
+max_heap_node = Node(21, Node(15, Node(7), Node(11)), Node(3, Node(2), Node(1)))
+
+def is_heap(tree, compare_func = max_heap_comparator):
+   if tree == None:
+      return True
    
-   elif child_value < parent_value:
+
+   if tree.get_left_child():
+      result_one = is_heap(tree, max_heap_comparator(tree.get_value(), tree.get_left_child().get_value()))
+
+   if tree.get_right_child():
+      result_two = is_heap(tree, max_heap_comparator(tree.get_value, tree.get_right_child().get_value()))
+
+   if result_one == True and result_two == True:
       return "max_heap"
+   else:
+      return "not max heap"
 
-def is_heap(node):
-   if node == None:
-      return 
-   
-   if compare_func(node.get_left_child()) == compare_func(node.get_right_child()):
-      return 
 
-print(find_tree_height(tree3))
+
+#    if compare_func(node.get_left_child()) == compare_func(node.get_right_child()):
+#       return 
+
+# print(find_tree_height(tree3))
+print(is_heap(max_heap_node))
