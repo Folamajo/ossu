@@ -1,5 +1,5 @@
 import unittest
-from psets.tree import Node, check_node, find_tree_height
+from psets.tree import Node, check_node, find_tree_height, is_heap, max_heap_comparator, min_heap_comparator
 
 class TestTree(unittest.TestCase):
    def test_valid_input(self):
@@ -31,4 +31,24 @@ class TestTree(unittest.TestCase):
       result = 2
       tree1 = Node(8, Node(2, Node(1), Node(6)), Node(10))
       self.assertEqual(find_tree_height(tree1), result)
+
+   def test_valid_max_heap(self):
+      result = True
+      tree = Node(21, Node(15, Node(7), Node(11)), Node(3, Node(2), Node(1)))
+      self.assertEqual(is_heap(tree, max_heap_comparator), result)
+
+   def text_invalid_max_heap(self):
+      result = False
+      tree = Node(21, Node(15, Node(7), Node(11)), Node(3, Node(2), Node(5)))
+      self.assertEqual(is_heap(tree, max_heap_comparator), result)
+
+   def test_valid_min_heap(self):
+      result = True
+      tree = Node(4, Node(10, Node(18), Node(11)), Node(5, Node(7), Node(8)))
+      self.assertEqual(is_heap(tree, min_heap_comparator), result )
+
+   def test_invalid_min_heap(self):
+      result = False
+      tree = Node(4, Node(10, Node(18), Node(11)), Node(10, Node(7), Node(8)))
+      self.assertEqual(is_heap(tree, min_heap_comparator), result )
 
